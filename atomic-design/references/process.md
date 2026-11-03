@@ -40,6 +40,18 @@ For each shared component, provide appropriate documentation or stories, meaning
 
 Page variations in Storybook or fixtures can test these states without a live backend.
 
+## Choose the application-wiring seam
+
+Keep one-off, page-specific outcome mapping in the route page. Extract it to a feature hook when multiple entry points share the flow, or when the route must coordinate several states or sequential effects and that orchestration obscures page composition. Do not extract a hook solely to make the code testable or to move a short handler.
+
+Test the behavior through the seam that owns it:
+
+- If the route page owns the mapping, test the route behavior, including the visible success/error result and navigation where relevant.
+- If a feature hook owns a shared or substantial flow, test that flow through the hook's public interface and keep one route-level test for its wiring.
+- Avoid testing the same mapping in both places. Keep the UI organism independent by passing actions and outcomes through props.
+
+This keeps the interface as the test surface and concentrates changes in one place. Add a separate adapter only when real variation requires another implementation; a test-only seam adds indirection without leverage.
+
 ## 5. Migrate incrementally
 
 Avoid a big-bang rewrite. Standardize tokens from observed values, replace repeated primitives screen by screen, then extract repeated compositions and sections. Introduce dependency checks gradually—warnings first, errors once existing violations are addressed. Keep the application deliverable at each step and measure progress against the actual scope.

@@ -43,6 +43,8 @@ For classification criteria, edge cases, and promotion guidance, read [`referenc
 
 When the implementation is React/TSX and needs concrete patterns, read [`references/react-tsx.md`](references/react-tsx.md). For an existing-system inventory, incremental migration, or governance, read [`references/process.md`](references/process.md).
 
+For the route-page versus feature-hook decision, and where to test that logic, read the application-wiring guidance in [`references/process.md`](references/process.md).
+
 ## Placement decision
 
 1. Is it a design value? → **Token**.

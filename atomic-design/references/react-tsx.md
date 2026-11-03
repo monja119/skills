@@ -140,7 +140,7 @@ export function LoginForm({ onSubmit, error }: LoginFormProps) {
 }
 ```
 
-In production, also decide how rejected submissions map to visible errors; the example keeps that policy outside the organism.
+In production, decide where rejected submissions map to visible errors using the application-wiring rule in [`process.md`](process.md). Keep the policy outside the organism.
 
 ## Template and page
 
@@ -193,7 +193,7 @@ function LoginPage() {
 }
 ```
 
-If route logic grows, move it to a feature hook while keeping the route as the composition point.
+This example keeps page-specific mapping in the route. Extract it to a feature hook only when the flow is shared or substantial; use the test strategy in [`process.md`](process.md).
 
 ## Stories and tests
 
@@ -207,7 +207,7 @@ Test by responsibility:
 | Molecule | Label/input association, hint/error announcement |
 | Organism | User interaction, emitted callback values, loading/error behavior |
 | Template | Slot rendering, semantic structure, responsive layout |
-| Page | Key user journey and application integration |
+| Page | Route-owned outcome mapping and application integration; if a feature hook owns the flow, test it through that hook and retain one route wiring check |
 
 Example organism assertion:
 
